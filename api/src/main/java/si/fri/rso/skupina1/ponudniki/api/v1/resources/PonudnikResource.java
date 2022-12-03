@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @ApplicationScoped
-@Path("/ponudniki")
+@Path("/providers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PonudnikResource {

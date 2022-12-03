@@ -1,25 +1,25 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: image-catalog-deployment
+  name: ponudniki-deployment
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: image-catalog
+      app: ponudniki
   template:
     metadata:
       labels:
-        app: image-catalog
+        app: ponudniki
     spec:
       containers:
-        - image: prporso/image-catalog:2022-10-27-17-33-13
-          name: image-catalog
+        - image: rso2223s01/ponudniki:latest
+          name: ponudniki
           env:
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
-              value: jdbc:postgresql://fanny.db.elephantsql.com:5432/zqjqqtrd
+              value: jdbc:postgresql://raja.db.elephantsql.com:5432/nglexaye
             - name: KUMULUZEE_DATASOURCES0_USERNAME
-              value: zqjqqtrd
+              value: nglexaye
             - name: KUMULUZEE_DATASOURCES0_PASSWORD
               valueFrom:
                 secretKeyRef:
@@ -35,7 +35,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: image-catalog
+  name: ponudniki
 spec:
   type: LoadBalancer
   ports:
@@ -43,4 +43,4 @@ spec:
       protocol: TCP
       targetPort: server
   selector:
-    app: image-catalog
+    app: ponudniki
