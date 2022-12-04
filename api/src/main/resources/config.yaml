@@ -12,6 +12,6 @@ kumuluzee:
       connection-url: jdbc:postgresql://localhost:5432/ponudniki
       username: dbuser
       password: postgres
-      max-pool-size: 20
+      max-pool-size: 3
 rest-properties:
   maintenance-mode: false

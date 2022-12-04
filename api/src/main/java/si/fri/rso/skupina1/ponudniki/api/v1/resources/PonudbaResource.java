@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 
 
 @ApplicationScoped
-@Path("/ponudbe")
+@Path("/offers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class PonudbaResource {
