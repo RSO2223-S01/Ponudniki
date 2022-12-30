@@ -19,10 +19,32 @@ kumuluzee:
       mapping: /openapi-spec
     scan:
       packages: si.fri.rso.skupina1.ponudniki.api.v1
+    # servers:
     ui:
       mapping: /openapi
       server-auto-config:
         enabled: false
         original-uri-check: false
+  health:
+    servlet:
+      mapping: /health
+      enabled: true
+    logs:
+      enabled: true
+      level: INFO
+      period-s: 30
+    checks:
+      data-source-health-check:
+        jndi-name: jdbc/ponudniki
+        type: liveness
+      http-health-check:
+        - connection-url: http://localhost:8080/openapi
+          type: readiness
+        - connection-url: http://localhost:8080/v1/providers
+          type: readiness
+      disk-space-health-check:
+        threshold: 100
+        type: both
 rest-properties:
   maintenance-mode: false
+  broken: false

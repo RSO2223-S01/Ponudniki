@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudba;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudnik;
 import si.fri.rso.skupina1.ponudniki.models.entities.PonudbaEntity;
@@ -41,6 +42,7 @@ public class PonudnikBean {
 
     }
 
+    @Timed
     public List<Ponudnik> getPonudnikiFilter(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0)
