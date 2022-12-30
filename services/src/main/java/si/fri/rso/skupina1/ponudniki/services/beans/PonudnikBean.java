@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
+import org.eclipse.microprofile.metrics.annotation.Metered;
 import org.eclipse.microprofile.metrics.annotation.Timed;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudba;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudnik;
@@ -30,7 +31,8 @@ public class PonudnikBean {
     @Inject
     private EntityManager em;
 
-
+    @Timed
+    @Metered(name = "getPonudniki_rate")
     public List<Ponudnik> getPonudniki() {
 
         TypedQuery<PonudnikEntity> query = em.createNamedQuery(
@@ -43,6 +45,7 @@ public class PonudnikBean {
     }
 
     @Timed
+    @Metered(name = "getPonudnikiFilter_rate")
     public List<Ponudnik> getPonudnikiFilter(UriInfo uriInfo) {
 
         QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery()).defaultOffset(0)
@@ -52,6 +55,8 @@ public class PonudnikBean {
                 .map(new PonudnikConverter()::toDto).collect(Collectors.toList());
     }
 
+    @Timed
+    @Metered(name = "getPonudnik_rate")
     public Ponudnik getPonudnik(Integer id) {
 
         PonudnikEntity ponudnikEntity = em.find(PonudnikEntity.class, id);
@@ -64,6 +69,8 @@ public class PonudnikBean {
         return ponudnik;
     }
 
+    @Timed
+    @Metered(name = "createPonudnik_rate")
     public Ponudnik createPonudnik(Ponudnik ponudnik) {
 
         PonudnikConverter ponudnikConverter = new PonudnikConverter();
@@ -85,6 +92,8 @@ public class PonudnikBean {
         return ponudnikConverter.toDto(ponudnikEntity);
     }
 
+    @Timed
+    @Metered(name = "putPonudnik_rate")
     public Ponudnik putPonudnik(Integer id, Ponudnik ponudnik) {
 
         PonudnikEntity c = em.find(PonudnikEntity.class, id);
@@ -109,6 +118,8 @@ public class PonudnikBean {
         return ponudnikConverter.toDto(updatedPonudnikEntity);
     }
 
+    @Timed
+    @Metered(name = "deletePonudnik_rate")
     public boolean deletePonudnik(Integer id) {
 
         PonudnikEntity ponudnik = em.find(PonudnikEntity.class, id);

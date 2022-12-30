@@ -11,6 +11,7 @@ import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudba;
 import si.fri.rso.skupina1.ponudniki.services.beans.PonudbaBean;
+import com.kumuluz.ee.logs.cdi.Log;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -22,7 +23,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.logging.Logger;
 
-
+@Log
 @ApplicationScoped
 @Path("/offers")
 @Produces(MediaType.APPLICATION_JSON)

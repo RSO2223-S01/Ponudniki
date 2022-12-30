@@ -1,6 +1,7 @@
 package si.fri.rso.skupina1.ponudniki.api.v1.resources;
 
 
+import com.kumuluz.ee.logs.cdi.Log;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.enums.SchemaType;
 import org.eclipse.microprofile.openapi.annotations.headers.Header;
@@ -10,6 +11,7 @@ import org.eclipse.microprofile.openapi.annotations.parameters.Parameter;
 import org.eclipse.microprofile.openapi.annotations.parameters.RequestBody;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponse;
 import org.eclipse.microprofile.openapi.annotations.responses.APIResponses;
+import org.glassfish.jersey.message.internal.TracingLogger;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudnik;
 import si.fri.rso.skupina1.ponudniki.services.beans.PonudnikBean;
 
@@ -23,6 +25,7 @@ import javax.ws.rs.core.UriInfo;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Log
 @ApplicationScoped
 @Path("/providers")
 @Produces(MediaType.APPLICATION_JSON)
@@ -47,7 +50,6 @@ public class PonudnikResource {
             )})
     @GET
     public Response getPonudniki() {
-
         List<Ponudnik> ponudnik = ponudnikBean.getPonudnikiFilter(uriInfo);
 
         return Response.status(Response.Status.OK).entity(ponudnik).build();
