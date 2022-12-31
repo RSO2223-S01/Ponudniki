@@ -12,10 +12,7 @@ import java.util.stream.Collectors;
 
 import com.kumuluz.ee.rest.beans.QueryParameters;
 import com.kumuluz.ee.rest.utils.JPAUtils;
-import si.fri.rso.skupina1.ponudniki.lib.ImageMetadata;
 import si.fri.rso.skupina1.ponudniki.lib.Ponudba;
-import si.fri.rso.skupina1.ponudniki.models.converters.ImageMetadataConverter;
-import si.fri.rso.skupina1.ponudniki.models.entities.ImageMetadataEntity;
 import si.fri.rso.skupina1.ponudniki.services.converters.PonudbaConverter;
 import si.fri.rso.skupina1.ponudniki.models.entities.PonudbaEntity;
 
