@@ -22,6 +22,10 @@ spec:
               value: http://localhost:8080/providers/v1/providers
             - name: KUMULUZEE_HEALTH_CHECKS_HTTPHEALTHCHECK1_CONNECTIONURL
               value: http://localhost:8080/providers/openapi
+            - name: KUMULUZEE_OPENAPIMP_UI_SPECIFICATIONSERVER
+              value: http://rso-dostavi.ga
+            - name: KUMULUZEE_OPENAPIMP_SERVERS
+              value: http://rso-dostavi.ga/providers
             - name: KUMULUZEE_CONFIG_CONSUL_AGENT
               value: http://consul:8500
             - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
