@@ -1,5 +1,7 @@
 package si.fri.rso.skupina1.ponudniki.lib;
 
+import java.util.List;
+
 public class Ponudnik {
 
     private Integer ponudnikId;
@@ -7,6 +9,7 @@ public class Ponudnik {
     private String mesto;
     private Long postnaSt;
     private String ulica;
+    private List<Ponudba> ponudbe;
 
     public Integer getPonudnikId() {
         return ponudnikId;
@@ -46,5 +49,13 @@ public class Ponudnik {
 
     public void setUlica(String ulica) {
         this.ulica = ulica;
+    }
+
+    public List<Ponudba> getPonudbe() {
+        return ponudbe;
+    }
+
+    public void setPonudbe(List<Ponudba> ponudbe) {
+        this.ponudbe = ponudbe;
     }
 }

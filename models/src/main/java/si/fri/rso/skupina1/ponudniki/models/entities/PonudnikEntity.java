@@ -1,6 +1,7 @@
 package si.fri.rso.skupina1.ponudniki.models.entities;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "ponudniki")
@@ -27,6 +28,9 @@ public class PonudnikEntity {
 
     @Column(name = "ulica")
     private String ulica;
+
+    @OneToMany(cascade = CascadeType.PERSIST)
+    private List<PonudbaEntity> ponudbe;
 
 
     public PonudnikEntity() {
@@ -80,5 +84,13 @@ public class PonudnikEntity {
 
     public void setUlica(String ulica) {
         this.ulica = ulica;
+    }
+
+    public List<PonudbaEntity> getPonudbe() {
+        return ponudbe;
+    }
+
+    public void setPonudbe(List<PonudbaEntity> ponudbe) {
+        this.ponudbe = ponudbe;
     }
 }

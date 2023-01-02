@@ -92,7 +92,7 @@ public class PonudnikResource {
             required = true, content = @Content(
             schema = @Schema(implementation = Ponudnik.class))) Ponudnik ponudnik) {
 
-        if ((ponudnik.getIme() == null || ponudnik.getMesto() == null || ponudnik.getPostnaSt() == null) || ponudnik.getUlica() == null) {
+        if ((ponudnik.getIme() == null || ponudnik.getMesto() == null || ponudnik.getPostnaSt() == null) || ponudnik.getUlica() == null || ponudnik.getPonudbe() == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         }
         else {

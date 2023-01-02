@@ -3,7 +3,6 @@ package si.fri.rso.skupina1.ponudniki.lib;
 public class Ponudba {
 
     private Integer ponudbaId;
-    private Integer ponudnikId;
     private String ime;
     private Float cena;
 
@@ -13,14 +12,6 @@ public class Ponudba {
 
     public void setPonudbaId(Integer ponudbaId) {
         this.ponudbaId = ponudbaId;
-    }
-
-    public Integer getPonudnikId() {
-        return ponudnikId;
-    }
-
-    public void setPonudnikId(Integer ponudnikId) {
-        this.ponudnikId = ponudnikId;
     }
 
     public String getIme() {

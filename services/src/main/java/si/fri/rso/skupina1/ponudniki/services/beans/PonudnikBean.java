@@ -40,7 +40,7 @@ public class PonudnikBean {
 
         List<PonudnikEntity> resultList = query.getResultList();
 
-        return resultList.stream().map(new PonudnikConverter()::toDto).collect(Collectors.toList());
+        return resultList.stream().map(PonudnikConverter::toDto).collect(Collectors.toList());
 
     }
 
@@ -52,7 +52,7 @@ public class PonudnikBean {
                 .build();
 
         return JPAUtils.queryEntities(em, PonudnikEntity.class, queryParameters).stream()
-                .map(new PonudnikConverter()::toDto).collect(Collectors.toList());
+                .map(PonudnikConverter::toDto).collect(Collectors.toList());
     }
 
     @Timed
@@ -65,7 +65,7 @@ public class PonudnikBean {
             throw new NotFoundException();
         }
 
-        Ponudnik ponudnik = new PonudnikConverter().toDto(ponudnikEntity);
+        Ponudnik ponudnik = PonudnikConverter.toDto(ponudnikEntity);
         return ponudnik;
     }
 
@@ -73,8 +73,7 @@ public class PonudnikBean {
     @Metered(name = "createPonudnik_rate")
     public Ponudnik createPonudnik(Ponudnik ponudnik) {
 
-        PonudnikConverter ponudnikConverter = new PonudnikConverter();
-        PonudnikEntity ponudnikEntity = ponudnikConverter.toEntity(ponudnik);
+        PonudnikEntity ponudnikEntity = PonudnikConverter.toEntity(ponudnik);
 
         try {
             beginTx();
@@ -89,7 +88,7 @@ public class PonudnikBean {
             throw new RuntimeException("Entity was not persisted");
         }
 
-        return ponudnikConverter.toDto(ponudnikEntity);
+        return PonudnikConverter.toDto(ponudnikEntity);
     }
 
     @Timed
@@ -97,13 +96,12 @@ public class PonudnikBean {
     public Ponudnik putPonudnik(Integer id, Ponudnik ponudnik) {
 
         PonudnikEntity c = em.find(PonudnikEntity.class, id);
-        PonudnikConverter ponudnikConverter = new PonudnikConverter();
 
         if (c == null) {
             return null;
         }
 
-        PonudnikEntity updatedPonudnikEntity = ponudnikConverter.toEntity(ponudnik);
+        PonudnikEntity updatedPonudnikEntity = PonudnikConverter.toEntity(ponudnik);
 
         try {
             beginTx();
@@ -115,7 +113,7 @@ public class PonudnikBean {
             rollbackTx();
         }
 
-        return ponudnikConverter.toDto(updatedPonudnikEntity);
+        return PonudnikConverter.toDto(updatedPonudnikEntity);
     }
 
     @Timed

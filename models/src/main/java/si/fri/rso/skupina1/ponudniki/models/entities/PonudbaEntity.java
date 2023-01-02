@@ -17,10 +17,6 @@ public class PonudbaEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    @JoinColumn(name = "ponudnikId")
-    private PonudnikEntity ponudnik;
-
     @Column(name = "ime")
     private String ime;
 
@@ -32,10 +28,9 @@ public class PonudbaEntity {
         super();
     }
 
-    public PonudbaEntity(String ime, PonudnikEntity ponudnik, Float cena) {
+    public PonudbaEntity(String ime, Float cena) {
         super();
         this.ime = ime;
-        this.ponudnik = ponudnik;
         this.cena = cena;
     }
 
@@ -46,14 +41,6 @@ public class PonudbaEntity {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public PonudnikEntity getPonudnik() {
-        return ponudnik;
-    }
-
-    public void setPonudnik(PonudnikEntity ponudnik) {
-        this.ponudnik = ponudnik;
     }
 
     public String getIme() {

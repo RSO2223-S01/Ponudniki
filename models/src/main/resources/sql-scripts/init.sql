@@ -3,6 +3,11 @@ INSERT INTO ponudniki (ime, mesto, postnaSt, ulica) VALUES ('Dobra vila', 'Ljubl
 
 
 -- Insert Ponudbe
-INSERT INTO ponudbe (ponudnikId, ime, cena) VALUES ('1', 'Iskreno', 12.20)
-INSERT INTO ponudbe (ponudnikId, ime, cena) VALUES ('1', 'Dobra vila', 13.50)
-INSERT INTO ponudbe (ponudnikId, ime, cena) VALUES ('1', 'Klasika', 12.30)
+INSERT INTO ponudbe (ime, cena) VALUES ('Iskreno', 12.20);
+INSERT INTO ponudbe (ime, cena) VALUES ('Dobra vila', 13.50);
+INSERT INTO ponudbe (ime, cena) VALUES ('Klasika', 12.30);
+
+
+INSERT INTO ponudniki_ponudbe (ponudnikentity_id, ponudbe_id) VALUES (1, 1)
+INSERT INTO ponudniki_ponudbe (ponudnikentity_id, ponudbe_id) VALUES (1, 2)
+INSERT INTO ponudniki_ponudbe (ponudnikentity_id, ponudbe_id) VALUES (1, 3)

@@ -33,7 +33,7 @@ public class PonudbaBean {
 
         List<PonudbaEntity> resultList = query.getResultList();
 
-        return resultList.stream().map(new PonudbaConverter()::toDto).collect(Collectors.toList());
+        return resultList.stream().map(PonudbaConverter::toDto).collect(Collectors.toList());
 
     }
 
@@ -43,7 +43,7 @@ public class PonudbaBean {
                 .build();
 
         return JPAUtils.queryEntities(em, PonudbaEntity.class, queryParameters).stream()
-                .map(new PonudbaConverter()::toDto).collect(Collectors.toList());
+                .map(PonudbaConverter::toDto).collect(Collectors.toList());
     }
 
     public Ponudba getPonudba(Integer id) {
@@ -54,14 +54,14 @@ public class PonudbaBean {
             throw new NotFoundException();
         }
 
-        Ponudba ponudba = new PonudbaConverter().toDto(ponudbaEntity);
+        Ponudba ponudba = PonudbaConverter.toDto(ponudbaEntity);
         return ponudba;
     }
 
     public Ponudba createPonudba(Ponudba ponudba) {
 
-        PonudbaConverter ponudbaConverter = new PonudbaConverter();
-        PonudbaEntity ponudbaEntity = ponudbaConverter.toEntity(ponudba);
+
+        PonudbaEntity ponudbaEntity = PonudbaConverter.toEntity(ponudba);
 
         try {
             beginTx();
@@ -76,19 +76,18 @@ public class PonudbaBean {
             throw new RuntimeException("Entity was not persisted");
         }
 
-        return ponudbaConverter.toDto(ponudbaEntity);
+        return PonudbaConverter.toDto(ponudbaEntity);
     }
 
     public Ponudba putPonudba(Integer id, Ponudba ponudba) {
 
         PonudbaEntity c = em.find(PonudbaEntity.class, id);
-        PonudbaConverter ponudbaConverter = new PonudbaConverter();
 
         if (c == null) {
             return null;
         }
 
-        PonudbaEntity updatedPonudbaEntity = ponudbaConverter.toEntity(ponudba);
+        PonudbaEntity updatedPonudbaEntity = PonudbaConverter.toEntity(ponudba);
 
         try {
             beginTx();
@@ -100,7 +99,7 @@ public class PonudbaBean {
             rollbackTx();
         }
 
-        return ponudbaConverter.toDto(updatedPonudbaEntity);
+        return PonudbaConverter.toDto(updatedPonudbaEntity);
     }
 
     public boolean deletePonudba(Integer id) {
